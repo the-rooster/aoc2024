@@ -12,7 +12,6 @@ if (!matches) {
 
 let total = 0;
 for (const match of matches) {
-  console.log(match[0]);
   total += Number(match[1]) * Number(match[2])
 }
 
