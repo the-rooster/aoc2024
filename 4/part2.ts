@@ -58,6 +58,4 @@ for (let xi = 0; xi < rows.length; xi++) {
   }
 }
 
-console.log(As)
-
 console.log(total);
