@@ -5,24 +5,20 @@ let strData = new TextDecoder().decode(data)
 strData = strData.replaceAll("\r","");
 const [rules, updates] = strData.split(/\n\W+/)
 
+// parse rules
 const rulesMap : Record<string, string[][]> = {}
 for (const rulestr of rules.split("\n")) {
   const ruleVals = rulestr.split("|") as string[]
-
-
-  if (!rulesMap[ruleVals[0]]) {
-    rulesMap[ruleVals[0]] = [ruleVals]
-  } else {
-    rulesMap[ruleVals[0]].push(ruleVals)
-  }
-
-  if (!rulesMap[ruleVals[1]]) {
-    rulesMap[ruleVals[1]] = [ruleVals]
-  } else {
-    rulesMap[ruleVals[1]].push(ruleVals)
-  }
+  ruleVals.map((val) => {
+    if (!rulesMap[val]) {
+      rulesMap[val] = [ruleVals]
+    } else {
+      rulesMap[val].push(ruleVals)
+    }
+  })
 }
 
+// parse updates
 const updateArrays: string[][] = [];
 for (const updateRow of updates.split("\n")) {
   updateArrays.push(updateRow.split(","))
