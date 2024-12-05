@@ -44,13 +44,11 @@ for (let xi = 0; xi < rows.length; xi++) {
       for (const direction of directions) {
         const [found, Acoord] = checkMAS(xi,xj,rows,direction);
         if (found) {
-          let count = 0;
           for (const a of As) {
             if (a[0] == Acoord[0] && a[1] == Acoord[1]) {
-              count += 1;
+              total += 1;
             }
           }
-          total += count;
           As.push(Acoord);
         }
       }
