@@ -5,8 +5,6 @@ let strData = new TextDecoder().decode(data)
 strData = strData.replaceAll("\r","");
 const [rules, updates] = strData.split(/\n\W+/)
 
-console.log(rules, updates)
-
 const rulesMap : Record<string, string[][]> = {}
 for (const rulestr of rules.split("\n")) {
   const ruleVals = rulestr.split("|") as string[]
