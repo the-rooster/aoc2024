@@ -9,13 +9,11 @@ const [rules, updates] = strData.split(/\n\W+/)
 const rulesMap : Record<string, string[][]> = {}
 for (const rulestr of rules.split("\n")) {
   const ruleVals = rulestr.split("|") as string[]
-  ruleVals.map((val) => {
-    if (!rulesMap[val]) {
-      rulesMap[val] = [ruleVals]
-    } else {
-      rulesMap[val].push(ruleVals)
-    }
-  })
+  if (!rulesMap[ruleVals[0]]) {
+    rulesMap[ruleVals[0]] = [ruleVals]
+  } else {
+    rulesMap[ruleVals[0]].push(ruleVals)
+  }
 }
 
 // parse updates
@@ -46,19 +44,7 @@ function checkInOrder(update: string[]) {
             }
           }
         }
-      } else {
-        const occurences = occurenceMap[before];
-        if (occurences) {
-          for (const occurence of occurences) {
-            if (occurence > i) {
-
-              passed = false;
-              break;
-            }
-          }
-        }
       }
-
       if (!passed) {
         break;
       }
